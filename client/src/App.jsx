@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/common/Navigation';
-
+import HomePage from './HomePage';
 import { AuthProvider } from './components/auth/AuthContext';
 import './App.css';
 
@@ -27,6 +27,11 @@ const App = () => {
       <Router>
         <div>
           <Navigation isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+          <Routes>
+            <Route path="/" element={<HomePage />}>
+
+            </Route>
+          </Routes>
         </div>
       </Router>
     </AuthProvider>
