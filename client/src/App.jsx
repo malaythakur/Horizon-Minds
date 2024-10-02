@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/common/Navigation';
+import Footer from './components/common/Footer';
 import HomePage from './HomePage';
 import { AuthProvider } from './components/auth/AuthContext';
 import './App.css';
@@ -32,6 +33,7 @@ const App = () => {
 
             </Route>
           </Routes>
+          <Footer />
         </div>
       </Router>
     </AuthProvider>
