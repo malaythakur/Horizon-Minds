@@ -5,6 +5,8 @@ import Footer from './components/common/Footer';
 import HomePage from './HomePage';
 import { AuthProvider } from './components/auth/AuthContext';
 import './App.css';
+import BlogList from './components/blog/BlogList';
+import Blog from './components/blog/Blog';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,9 +31,11 @@ const App = () => {
         <div>
           <Navigation isAuthenticated={isAuthenticated} onLogout={handleLogout} />
           <Routes>
-            <Route path="/" element={<HomePage />}>
+            <Route path="/" element={<HomePage />} />
+            
+            <Route path="/blogs" element={<BlogList />} />
 
-            </Route>
+            <Route path="/blog/:blogId" element={<Blog />} />
           </Routes>
           <Footer />
         </div>
