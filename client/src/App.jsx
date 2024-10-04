@@ -7,7 +7,7 @@ import { AuthProvider } from './components/auth/AuthContext';
 import './App.css';
 import BlogList from './components/blog/BlogList';
 import Blog from './components/blog/Blog';
-
+import Team from './Team';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -36,6 +36,8 @@ const App = () => {
             <Route path="/blogs" element={<BlogList />} />
 
             <Route path="/blog/:blogId" element={<Blog />} />
+
+            <Route path="/team" element={<Team />} />
           </Routes>
           <Footer />
         </div>
