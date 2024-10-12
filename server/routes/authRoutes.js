@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const authController = require("../controllers/authController");
+const authenticateToken = require("../middlewares/authenticateToken");
 
-// Define your routes here, or keep it empty for now
+router.post("/register", authController.register);
+router.post("/login", authController.login);
+router.post("/refresh", authController.refreshToken);
+router.post("/protected", authenticateToken, authController.protected);
 
 module.exports = router;
