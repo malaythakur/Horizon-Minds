@@ -15,7 +15,7 @@ exports.storePurchase = async (req, res) => {
             [username]
         );
 
-        if(userResults.length ===0) {
+        if(userResults.length === 0) {
             return res.status(400).send("USER does not exist");
 
         }

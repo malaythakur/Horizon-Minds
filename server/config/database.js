@@ -14,6 +14,7 @@ async function initializeConnection() {
         return connection;
     } catch (err) {
         console.error("Error Connecting to database",err);
+        throw err;
     }
 }
 

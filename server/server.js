@@ -2,16 +2,23 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const {initializeConnection} = require("./config/database");
+const path = require("path");
 
 const app = express();
+
 app.use(express.json());
 app.use(cors({
-    origin: [
-        "http://localhost:5173",
-    ],
+    origin: ["http://localhost:5173"],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.get("*", (_, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
+});
+
 
 const authRoutes = require("./routes/authRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
@@ -26,14 +33,14 @@ app.use("/checkout", checkoutRoutes);
 app.use("/courses", courseRoutes);
 app.use("/videos", videoRoutes);
 app.use("/purchased", purchasedCoursesRoutes);
-app.use("/store-purchase",storePurchaseRoutes);
+app.use("/store-purchase", storePurchaseRoutes);
 app.use("/course-content", courseContentRoutes);
 
 initializeConnection()
     .then((connection) => {
-        const port = process.env.PORT || 3000;
+        const port = process.env.PORT || 3001;
         app.listen(port, () => {
-            console.log(`server is running on port ${port}`)
+            console.log(`server is running on port ${port}`);
         });
     })
     .catch ((err) => {
