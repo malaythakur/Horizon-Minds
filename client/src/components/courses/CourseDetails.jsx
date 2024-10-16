@@ -3,39 +3,34 @@ import { useParams } from "react-router-dom";
 
 const courseDetailsData = {
     1: {
-        course_name: "Real-Time Data Streaming",
+        course_name: "Learn About Kafka and Node.js",
         syllabus: "Learn about Kafka Architecture, Use Kafkajs with Node.js",
         instructor_bio: "John Doe is a seasoned Kafka Expert",
         prerequisites: "A little bit of Node.js Knowledge, and your laptop, yes, just that ..."
     },
-
     2: {
-        course_name: "Create React App with webpack",
+        course_name: "React, but with webpack",
         syllabus: "Enhance your app, advanced state management",
         instructor_bio: "Jane Smith is a leading React Developer...",
         prerequisites: "No preq. Let's just dive in..."
     },
-
     3: {
-        course_name: "Learn about Terraform in details",
+        course_name: "Learn About Terraform in Depth",
         syllabus: "Learn to create CI/CD pipelines, Automate the deployment process",
         instructor_bio: "Mike Johnson has over 10 years of Terraform Experience...",
         prerequisites: "Just you and you Laptop"
     },
-
     4: {
-        course_name: "Learn in depth about kubernetes",
+        course_name: "Kubernetes and Docker for Deployment",
         syllabus: "Create Clusters, Learn the intricacies of K8s",
         instructor_bio: "Emily Davis has build numerous Full Stack Application",
         prerequisites: "A basic knowledge about Node.js. Just that"
     },
-
     5: {
-        course_name: "Create your first own server less web app",
+        course_name: "Create your own Serverless web app",
         syllabus: "Use various AWS products like: S3, EC2, and many more...",
         instructor_bio: "Chris Wilson is a AWS Guru",
         prerequisites: "AWS account..."
-
     }
 };
 

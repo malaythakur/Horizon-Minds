@@ -1,16 +1,15 @@
-import React,{useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import axios from 'axios';
 
-const CourseContent = ({match}) => {
+const CourseContent = ({ match }) => {
     const [course, setCourse] = useState(null);
 
-    useEffect(()=> {
+    useEffect(() => {
         const fetchCourseContent = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`http://localhost:3000/course-content/
-                    ${match.params.id}`, {
-                        headers: {Authorization: `Bearer ${token}`},
+                const response = await axios.get(`http://localhost:3001/course-content/${match.params.id}`, {
+                        headers: { Authorization: `Bearer ${token}`},
                     });
                     setCourse(response.data);
             } catch (error) {

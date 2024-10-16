@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
+
 //Import Images
 import course1 from "../../assets/courses-images/1.png";
 import course2 from "../../assets/courses-images/2.png";
@@ -19,7 +21,7 @@ const MyCourses = () => {
     async function refreshToken() {
         try {
             const response = await axios.post(
-                "http://localhost:3000/auth/refresh-token",
+                "http://localhost:3001/auth/refresh-token",
                 {},
                 {
                     headers: {
@@ -42,13 +44,13 @@ const MyCourses = () => {
         try {
             let token = localStorage.getItem("token");
             const response = await axios.get(
-                "http://localhost:3000/purchased/purchased-courses",
+                "http://localhost:3001/purchased/purchased-courses",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-            console.log("API Response: ", response.data);
+                
             const uniqueCourses = removeDuplicates(response.data);
             setCourses(uniqueCourses);
         } catch (error) {
@@ -56,23 +58,19 @@ const MyCourses = () => {
                 try {
                     token = await refreshToken();
                     const response = await axios.get(
-                        "http://localhost:3000/purchased/purchased-courses",
+                        "http://localhost:3001/purchased/purchased-courses",
                         {
                             headers: {
                                 Authorization: `Bearer ${token}`,
                             },
                         });
 
-                    console.log("API Response after refresh: ", response.data); // LOG THE API RESPONSE AFTER REFRESH
                     const uniqueCourses = removeDuplicates(response.data);
                     setCourses(uniqueCourses);
 
                 } catch (refreshError) {
                     setError("Error Refreshing token and fetching courses");
-                    console.error(
-                        "Error refreshing token and fetching courses: ",
-                        refreshError
-                    );
+                    console.error("Error refreshing token and fetching courses: ", refreshError);
                 }
             } else {
                 setError("Error Fetching Purchased Courses");
@@ -95,14 +93,13 @@ const MyCourses = () => {
         }
 
         return uniqueCourses;
-    }
+    };
 
     useEffect(() => {
         fetchPurchasedCourses();
     }, []);
 
     useEffect(() => {
-        console.log("Courses: ", courses)
     }, [courses]);
 
     if (error) {
@@ -120,10 +117,12 @@ const MyCourses = () => {
         "Kubernetes and Docker for Deployment": course4,
         "Create your own Serverless web app": course5,
     };
+    
 
     const handleCourseClick = (courseId) => {
         navigate(`/course-player/${courseId}`);
     };
+    console.log({ courses });
 
     return (
         <section className="py-4 flex flex-col justify-center items-center max-w-5xl mx-auto">
@@ -137,11 +136,14 @@ const MyCourses = () => {
                 </p>
 
                 {courses.length === 0 ? (
-                    <p className="text-center">No Courses Found</p>
+                    <p className="text-center text-gray-200">No Courses Found</p>
                 ) : (
                     <div className="md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-                        {courses.map((course) => {
-                            <div className="bg-[#001313] overflow-hidden text-green-300 hover:text-green-400 shadow-sm shadow-green-300 rounded-sm hover:shadow-green-300 transform transition-transform duration-300 hover:scale-105">
+                        {courses.map((course) => (
+                            
+                            <div className="bg-[#001313] overflow-hidden text-green-300 hover:text-green-400 shadow-sm shadow-green-300 rounded-sm hover:shadow-green-300 transform transition-transform duration-300 hover:scale-105"
+                                key={course.id}
+                            >
                                 <img
                                     src={imageMap[course.name]}
                                     alt={course.name}
@@ -159,12 +161,13 @@ const MyCourses = () => {
 
                                 </div>
                             </div>
-                        })}
+                            
+                        ))}
                     </div>
                 )}
             </div>
         </section>
-    )
-}
+    );
+};
 
 export default MyCourses;

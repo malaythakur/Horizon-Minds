@@ -14,14 +14,14 @@ const Success = () => {
         if (sessionId && courseIds.length > 0) {
             const storePurchase = async () => {
                 try {
-                    const response = await axios.post('http://localhost:3000/store-purchase/store-purchase', {
+                    const response = await axios.post('http://localhost:3001/store-purchase/store-purchase', {
                         courseIds: courseIds
                     }, {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem('token')}`
                         }
                     });
-                    console.log('Purchase Stored: ',response.data);
+                    console.log('Purchase Stored: ', response.data);
                 } catch (error) {
                     console.error('Error storing purchase', error);
                 }
@@ -63,7 +63,7 @@ const Success = () => {
                 Go to your Courses
             </button>
         </div>
-    )
+    );
 };
 
 export default Success;
