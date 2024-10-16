@@ -1,0 +1,29 @@
+# Server Port
+
+PORT=3001
+
+# Database
+
+DB_HOST=<your-db-host-url> # This URL can be found in your AWS RDS instance.
+DB_USER=<your-db-username> # The username you created when setting up your RDS instance.
+DB_PASSWORD=<your-db-password> # The password you created during RDS setup.
+DB_NAME=<your-db-name>
+
+# JWT
+
+SECRET_KEY=
+REFRESH_SECRET_KEY=
+
+# STRIPE
+
+STRIPE_SECRET_KEY=
+
+# VIMEO
+
+VIMEO_CLIENT_ID=
+VIMEO_CLIENT_SECRET=
+VIMEO_ACCESS_TOKEN=
+
+# CLIENT URL
+
+CLIENT_URL=http://localhost:5173
